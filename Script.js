@@ -9,6 +9,6 @@ document.addEventListener('DOMContentLoaded', () => {
     }, 500); // Delay of 500ms before the animation starts
 
     setTimeout(() => {
-        window.location.href = "Homepage.html"; // Replace with the actual URL of your new page
+        window.location.href = "Homepage/Homepage.html"; // Replace with the actual URL of your new page
     }, 3000); // 3 seconds
 });
