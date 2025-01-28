@@ -7,4 +7,8 @@ document.addEventListener('DOMContentLoaded', () => {
         box.classList.add('wide');
         h1.classList.add('changed');
     }, 500); // Delay of 500ms before the animation starts
+
+    setTimeout(() => {
+        window.location.href = "Homepage.html"; // Replace with the actual URL of your new page
+    }, 3000); // 3 seconds
 });
