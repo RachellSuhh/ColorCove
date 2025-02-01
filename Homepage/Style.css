@@ -13,56 +13,63 @@
     color: blue;
     background-color: #ffffff;
   }
-  
+
   header {
-    color:blue;
-    padding: 20px 10px;
-    text-align: center;
-  }
-  
-  .desktop-message {
-    display: block; 
-  }
-  
-  .mobile-message {
-    display: none; 
-  }
-  .tablet-message {
-    display: none; 
-
-  }
-
-  
-  nav {
-
     display: flex;
-    justify-content: flex-start;
-    flex-direction: column;
-    flex-wrap: wrap;
-    font-size: 1rem;
-    padding: 10px 0;
-  }
-  
-  nav a {
-    color: blue;
+    justify-content: space-between; /* Pushes h1 left and nav right */
+    align-items: center; /* Aligns items vertically */
+    padding: 15px 50px;
+    font-family: "Abril Fatface", serif;
+    font-size: 70px;
+    font-style: normal;
+    background-color: #430707;
+    color: white;
+    text-shadow: 4px 4px 5px rgba(0, 0, 0, 0.5);
+}
+
+nav {
+  display: flex; /* Ensures links are in a horizontal row */
+  gap: 15px; /* Adds space between links */
+  justify-content: flex-end; /* Ensures nav stays to the right */
+  align-items: center; /* Aligns links properly */
+  padding: 10px 0;
+  font-family: "Arima", serif;
+  font-style: normal;
+}
+
+nav a {
+  color: white;
+  text-decoration: none;
+  margin: 0 15px;
+  padding: 8px 16px;
+  transition: border 0.3s ease;
+  font-family: "Arima", serif;
+  font-weight: 400;
+  font-style: normal;
+  font-size: 25px;
+  text-shadow: 4px 4px 5px rgba(0, 0, 0, 0.5);
+}
+
+nav a:hover {
+  text-decoration: underline white;
+  text-shadow: 4px 4px 5px rgba(0, 0, 0, 0.5);
+}
+
+.container {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  padding: 20px;
+}
+
+a {
     text-decoration: none;
-    margin: 0 15px;
-    font-weight: bold;
-    padding: 8px 16px;
-    transition: border 0.3s ease;
-  }
-  
-  nav a:hover {
-    border: 1px solid blue;
-  }
-  
-  .container {
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-    justify-content: space-between;
-    padding: 20px;
-  }
+    color: black;
+    font-size: 16px;
+}
+
+
   
   .text-content {
     flex: 1;
@@ -96,65 +103,17 @@
     height: 100%;
     box-shadow: 0 4px 6px blue;
   }
+
+  .abril-fatface-regular {
+    font-family: "Abril Fatface", serif;
+    font-weight: 400;
+    font-style: normal;
+  }
   
 
-  @media (max-width: 1024px){
-    body{
-      background-color: cyan;
-    }
-
-    .container{
-      flex-direction: column;
-    }
-
-    .desktop-message{
-      display: none;
-    }
-
-    .mobile-message{
-      display: none;
-    }
-
-    .tablet-message{
-      display: block;
-    }
-
-    .text-content,
-    .image-content{
-      margin-bottom: 20px;
-    }
-  }
-
-  @media (max-width: 768px) {
-    body{
-      background-color: yellow;
-    }
-
-    nav{
-      flex-direction: row;
-      align-items: flex-start;
-      justify-content: space-around;
-      margin-left: 20px;
-    }
-
-    .image-grid{
-      grid-template-columns: repeat(1, 1fr);
-    }
-
-
-    .desktop-message{
-      display: none;
-    }
-
-    .tablet-message{
-      display: none;
-    }
-
-    .mobile-message{
-      display: block;
-    }
-
-  }
-
-
-  
+.arima {
+  font-family: "Arima", serif;
+  font-optical-sizing: auto;
+  font-weight: 400;
+  font-style: normal;
+}
