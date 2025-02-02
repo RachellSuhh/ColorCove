@@ -10,6 +10,48 @@
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
         <link href="https://fonts.googleapis.com/css2?family=Arima:wght@100..700&display=swap" rel="stylesheet">  
+        <style>
+           body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin: 20px;
+        }
+        .question {
+            display: none;
+        }
+        .active {
+            display: block;
+        }
+        .options img {
+            width: 100px;
+            height: 100px;
+            margin: 10px;
+            cursor: pointer;
+            border-radius: 10px;
+            transition: transform 0.3s ease;
+        }
+        .options img:hover {
+            transform: scale(1.1);
+        }
+
+        .option span {
+            margin-top: 5px;
+            font-size: 14px;
+            font-weight: bold;
+        }
+        .result {
+            margin-top: 20px;
+            font-weight: bold;
+            font-size: 18px;
+            color: #d63384;
+        }
+        .result img {
+            width: 120px;
+            border-radius: 10px;
+            margin-top: 10px;
+        }
+    </style>
+      </style>
     </head>
 
     <header class="main-header">
@@ -24,5 +66,106 @@
 <body>
     <h1>Welcome to the Quiz</h1>
     <p>This is a simple quiz page.</p>
+    <h2>Find Your Perfect Lipstick Shade 💄</h2>
+
+    <!-- Question 1 -->
+    <div class="question active" id="q1">
+      <p>1️⃣ What is your skin tone?</p>
+      <div class="options">
+          <div class="option" onclick="nextQuestion('fair', 'q1', 'q2')">
+              <img src="Img/Fair.jpg" alt="Fair">
+              <span>Fair</span>
+          </div>
+          <div class="option" onclick="nextQuestion('medium', 'q1', 'q2')">
+              <img src="img/Medium.jpg" alt="Medium">
+              <span>Medium</span>
+          </div>
+          <div class="option" onclick="nextQuestion('deep', 'q1', 'q2')">
+              <img src="img/Deep.jpg" alt="Deep">
+              <span>Deep</span>
+          </div>
+      </div>
+  </div>
+
+    <!-- Question 2 -->
+    <div class="question" id="q2">
+      <p>2️⃣ What is your color tone?</p>
+      <div class="options">
+          <div class="option" onclick="nextQuestion('warm', 'q2', 'q3')">
+              <img src="Img/Warm.jpg" alt="Warm">
+              <span>Warm</span>
+          </div>
+          <div class="option" onclick="nextQuestion('cool', 'q2', 'q3')">
+              <img src="Img/Cool.jpg" alt="Cool">
+              <span>Cool</span>
+          </div>
+          <div class="option" onclick="nextQuestion('neutral', 'q2', 'q3')">
+              <img src="Img/Neutral.jpg" alt="Neutral">
+              <span>Neutral</span>
+          </div>
+      </div>
+  </div>
+
+    <!-- Question 3 -->
+    <div class="question" id="q3">
+        <p>3️⃣ What lipstick finish do you prefer?</p>
+        <div class="options">
+            <img src="matte.jpg" alt="Matte" onclick="showResult('matte')">
+            <img src="glossy.jpg" alt="Glossy" onclick="showResult('glossy')">
+            <img src="satin.jpg" alt="Satin" onclick="showResult('satin')">
+        </div>
+    </div>
+
+    <!-- Result Section -->
+    <div class="question" id="resultSection">
+        <p class="result" id="resultText"></p>
+        <img id="resultImage" src="" alt="Lipstick Shade">
+    </div>
+
+    <script>
+        let userChoices = {};
+
+        function nextQuestion(choice, currentQ, nextQ) {
+            userChoices[currentQ] = choice;
+            document.getElementById(currentQ).classList.remove("active");
+            document.getElementById(nextQ).classList.add("active");
+        }
+
+        function showResult(finish) {
+            userChoices["finish"] = finish;
+            document.getElementById("q3").classList.remove("active");
+            document.getElementById("resultSection").classList.add("active");
+
+            let { q1: skinTone, q2: colorTone } = userChoices;
+            let recommendation = "";
+            let imageSrc = "";
+
+            if (skinTone === "fair" && colorTone === "cool") {
+                recommendation = "Soft Rose or Mauve";
+                imageSrc = "soft-rose.jpg";
+            } else if (skinTone === "fair" && colorTone === "warm") {
+                recommendation = "Peachy Nude or Coral";
+                imageSrc = "peachy-nude.jpg";
+            } else if (skinTone === "medium" && colorTone === "cool") {
+                recommendation = "Berry or Plum";
+                imageSrc = "berry.jpg";
+            } else if (skinTone === "medium" && colorTone === "warm") {
+                recommendation = "Terracotta or Copper";
+                imageSrc = "terracotta.jpg";
+            } else if (skinTone === "deep" && colorTone === "cool") {
+                recommendation = "Deep Wine or Burgundy";
+                imageSrc = "deep-wine.jpg";
+            } else if (skinTone === "deep" && colorTone === "warm") {
+                recommendation = "Rich Red or Bronze";
+                imageSrc = "rich-red.jpg";
+            } else {
+                recommendation = "Universal Nude or Classic Red";
+                imageSrc = "universal-nude.jpg";
+            }
+
+            document.getElementById("resultText").innerHTML = `💄 Recommended Shade: <strong>${recommendation}</strong> with a <strong>${finish}</strong> finish!`;
+            document.getElementById("resultImage").src = imageSrc;
+        }
+    </script>
 </body>
 </html>
