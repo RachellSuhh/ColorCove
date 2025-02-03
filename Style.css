@@ -4,7 +4,6 @@
   box-sizing: border-box;
 }
 
-
 body {
   display: flex;
   flex-direction: column;
@@ -12,7 +11,7 @@ body {
   line-height: 1.6;
   color: white;
   background-color: black;
-  
+  height: 100vh; /* Make the body take the full viewport height */
 }
 
 .main-header {
@@ -26,10 +25,7 @@ body {
   color: white;
   text-shadow: 4px 4px 5px rgba(0, 0, 0, 0.5);
   width: 100%; 
-  max-width: 100%; 
-  margin: 0 auto; 
 }
-
 
 h1 a {
   font-family: "Abril Fatface", serif;
@@ -41,8 +37,6 @@ h1 a {
   border-radius: 5px;
   transition: background 0.3s ease, color 0.3s ease;
 }
-
-
 
 nav {
   display: flex;
@@ -65,65 +59,57 @@ nav a {
   transition: border 0.3s ease;
 }
 
-
 nav a:hover {
   text-decoration: underline;
-  text-shadow: 4px 4px 5px rgba(0, 0, 0, 0.5);
 }
-
 
 .container {
   display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-  justify-content: space-between;
-  align-items: center;
-  padding: 10px;
+  flex-direction: row; 
+  justify-content: center; 
+  align-items: center; 
+  gap: 20px; 
+  flex-grow: 1; /* Allows the container to fill available space below the header */
   max-width: 1100px;
-  width: 100%;
-  height: 100vh;
-  text-align: center;
+  margin: 0 auto;
 }
-
 
 .text-content {
-  flex: 1;
-  margin: 10px;
-  padding: 20px;
-  background: black;
-  text-align: center; 
-  justify-content: space-between;
+  flex: 1; 
+  text-align: right; 
+  padding-right: 20px;
 }
-
-.text-content h2 {
-  margin-bottom: 15px;
-  font-family: "Abril Fatface", serif;
-  font-weight: 400;
-  font-size: 100px;
-
-}
-
-.text-content p {
-  margin-bottom: 10px;
-}
-
 
 .image-content {
-  flex: 1;
-  margin: 10px;
-  justify-content: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center; 
+  flex: 0; 
 }
 
-.image-grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 15px;
+.image-content img {
+  width: 300px; 
+  height: auto;
 }
 
-.image-grid img {
-  width: 100%;
-  height: 100%;
-  box-shadow: 0 4px 6px blue;
+.right-text-content {
+  flex: 1; 
+  text-align: left; 
+  padding-left: 20px;
+  white-space: nowrap; 
+}
+
+h2 {
+  font-family: "Abril Fatface", serif;
+  color: white;
+  font-size: 80px;
+}
+
+h3 {
+  font-family: "Abril Fatface", serif;
+  font-size: 30px;
+  color: white;
 }
 
 /* Font classes */
