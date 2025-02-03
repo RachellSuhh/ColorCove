@@ -2,13 +2,13 @@ document.addEventListener('DOMContentLoaded', () => {
     const box = document.querySelector('.box');
     const h1 = document.querySelector('h1');
 
-    // Add the 'wide' class to the box and 'changed' class to the h1 after a short delay
+
     setTimeout(() => {
         box.classList.add('wide');
         h1.classList.add('changed');
-    }, 500); // Delay of 500ms before the animation starts
+    }, 500); 
 
     setTimeout(() => {
-        window.location.href = "Homepage/Homepage.html"; // Replace with the actual URL of your new page
-    }, 3000); // 3 seconds
+        window.location.href = "Homepage/Homepage.html"; 
+    }, 3000); 
 });
