@@ -56,17 +56,18 @@
             }
         }
     </style>
-
-    <script>
-        setTimeout(() => {
-            window.location.href = "Homepage.html"; 
-        }, 3000);
-    </script>
 </head>
 <body>
     <h1>Basic Transition</h1>
     <div class="box"></div>
     <div class="circle"></div>
+
+    <script>
+        // Redirect to homepage.html after 3 seconds
+        setTimeout(() => {
+            window.location.href = "homepage.html"; // Since homepage.html is in the same directory
+        }, 3000);
+    </script>
 
     <script src="Script.js"></script>
 </body>
