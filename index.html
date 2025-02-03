@@ -12,38 +12,24 @@
             justify-content: center;
             height: 100vh;
             margin: 0;
-            background-color: #f0f0f0;
+            background-color: black;
         }
 
-        h1 {
-            color: black;
-            font-size: 24px;
-            transition: color 1s ease-in-out, font-size 1s ease-in-out;
-        }
-
-        h1.changed {
-            color: red;
-            font-size: 32px;
-        }
-
-        .box {
-            width: 100px;
-            height: 100px;
-            background-color: red;
-            transition: width 1s ease-in-out;
-        }
-
-        .box.wide {
-            width: 200px;
-        }
 
         .circle {
             width: 70px;
             height: 70px;
-            border: 3px solid black;
+            border: 3px solid white;
             border-radius: 50%;
             border-top: 1px solid transparent;
-            animation: spin 2s linear infinite;
+            animation: spin 3s linear infinite;
+            margin-top: 20px;
+        }
+
+        img {
+            width: 300px;
+            height: auto;
+            animation: rotate 3s linear forwards;
             margin-top: 20px;
         }
 
@@ -55,17 +41,27 @@
                 transform: rotate(360deg);
             }
         }
+
+        @keyframes rotate {
+            from {
+                transform: rotate(0deg);
+            }
+            to {
+                transform: rotate(360deg);
+            }
+        }
     </style>
 </head>
 <body>
-    <h1>Basic Transition</h1>
-    <div class="box"></div>
+    
+  
+    <img src="Img/lipstick (1).png" alt="Lipstick Image">
     <div class="circle"></div>
 
     <script>
-        // Redirect to homepage.html after 3 seconds
+        
         setTimeout(() => {
-            window.location.href = "homepage.html"; // Since homepage.html is in the same directory
+            window.location.href = "Homepage.html"; 
         }, 3000);
     </script>
 
