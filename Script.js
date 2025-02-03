@@ -35,3 +35,4 @@ loader.load('Lipstick-Render.stl', function (geometry) {
     // Adjust camera
     camera.position.z = 100;
 });
+
