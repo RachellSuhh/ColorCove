@@ -70,7 +70,7 @@
 
     <!-- Question 1 -->
     <div class="question active" id="q1">
-      <p>1️⃣ What is your skin tone?</p>
+      <p>What is your skin tone?</p>
       <div class="options">
           <div class="option" onclick="nextQuestion('fair', 'q1', 'q2')">
               <img src="Img/Fair.jpg" alt="Fair">
@@ -89,7 +89,7 @@
 
     <!-- Question 2 -->
     <div class="question" id="q2">
-      <p>2️⃣ What is your color tone?</p>
+      <p>What is your color tone?</p>
       <div class="options">
           <div class="option" onclick="nextQuestion('warm', 'q2', 'q3')">
               <img src="Img/Warm.jpg" alt="Warm">
@@ -108,13 +108,22 @@
 
     <!-- Question 3 -->
     <div class="question" id="q3">
-        <p>3️⃣ What lipstick finish do you prefer?</p>
-        <div class="options">
-            <img src="matte.jpg" alt="Matte" onclick="showResult('matte')">
-            <img src="glossy.jpg" alt="Glossy" onclick="showResult('glossy')">
-            <img src="satin.jpg" alt="Satin" onclick="showResult('satin')">
-        </div>
-    </div>
+      <p>What lipstick finish do you prefer?</p>
+      <div class="options">
+          <div class="option" onclick="showResult('matte')">
+              <img src="Img/Matte.jpg" alt="Matte">
+              <span>Matte</span>
+          </div>
+          <div class="option" onclick="showResult('glossy')">
+              <img src="Img/Glossy.jpg" alt="Glossy">
+              <span>Glossy</span>
+          </div>
+          <div class="option" onclick="showResult('satin')">
+              <img src="Img/Satin.jpg" alt="Satin">
+              <span>Satin</span>
+          </div>
+      </div>
+  </div>
 
     <!-- Result Section -->
     <div class="question" id="resultSection">
