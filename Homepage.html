@@ -11,7 +11,8 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Arima:wght@100..700&display=swap" rel="stylesheet">  
 </head>
-<body>
+<body class="home-page">
+
   <header class="main-header">
     <h1><a href="Homepage.html">CC</a></h1>
     <nav>
@@ -32,67 +33,69 @@
     <div class="right-text-content">
       <h3>Welcome to ColorCove</h3>
     </div>
-  </div>
 
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/loaders/GLTFLoader.js"></script>
-  <script>
-    // Scene setup
-    const scene = new THREE.Scene();
-    const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
-    const renderer = new THREE.WebGLRenderer({ canvas: document.getElementById('modelCanvas'), antialias: true });
-    renderer.setSize(window.innerWidth, window.innerHeight);  // Adjust to fit your container
-    document.body.appendChild(renderer.domElement);
-
-    // Lighting
-    const ambientLight = new THREE.AmbientLight(0xffffff, 0.95);
-    scene.add(ambientLight);
-
-    const directionalLight = new THREE.DirectionalLight(0xffffff, 1);
-    directionalLight.position.set(-5, 10, 7).normalize();
-    scene.add(directionalLight);
-
-    // Load GLB file
-    const loader = new THREE.GLTFLoader();
-    loader.load('Lipstick-2.glb', function (gltf) {
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/loaders/GLTFLoader.js"></script>
+    <script>
+      // Scene setup
+      const scene = new THREE.Scene();
+      const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+      const renderer = new THREE.WebGLRenderer({ canvas: document.getElementById('modelCanvas'), antialias: true });
+      renderer.setSize(window.innerWidth, window.innerHeight);  // Adjust to fit your container
+      document.body.appendChild(renderer.domElement);
+    
+      const ambientLight = new THREE.AmbientLight(0xffffff, 0.95);
+      scene.add(ambientLight);
+    
+      const directionalLight = new THREE.DirectionalLight(0xffffff, 1);
+      directionalLight.position.set(-5, 10, 7).normalize();
+      scene.add(directionalLight);
+    
+      const loader = new THREE.GLTFLoader();
+      loader.load('Lipstick-2.glb', function (gltf) {
         const model = gltf.scene;
         scene.add(model);
-
+    
         // Center and scale the model
-        model.position.set(0, 1, 1);
-        model.scale.set(20, 20, 20);
-
+        model.position.set(0, 2, 0);
+        model.scale.set(20, 20, 10);
+    
         // Adjust camera
         camera.position.set(0, 1, 3);
-    }, undefined, function (error) {
+      }, undefined, function (error) {
         console.error('Error loading GLB file:', error);
-    });
-
-    // Animation timing
-    const animationDuration = 3000; // 3 seconds
-    const startTime = performance.now(); // Track start time
-
-    function animate() {
+      });
+    
+      let targetPosition = -5; // Initial target position
+      let currentPosition = -5; // Current position of the light
+      const easingFactor = 0.05; // Controls the "lag" effect (higher = slower, lower = faster)
+    
+      // Scroll event listener
+      window.addEventListener('scroll', function () {
+        const scrollPosition = window.scrollY; // Get the scroll position
+        const maxScroll = document.documentElement.scrollHeight - window.innerHeight; // Maximum scroll value
+    
+        // Calculate the target position based on the scroll position
+        targetPosition = (-5 + (scrollPosition / maxScroll) * 10); // Adjust the 10 for the range of movement
+      });
+    
+      function animate() {
         requestAnimationFrame(animate);
-
-        // Get elapsed time
-        const elapsedTime = performance.now() - startTime;
-
-        // Move the light from left to right over 3 seconds
-        if (elapsedTime < animationDuration) {
-            const progress = elapsedTime / animationDuration;
-            directionalLight.position.x = -5 + progress * 10;
-        } else {
-            // After 3 seconds, stop the light at the final position
-            directionalLight.position.x = 5;
-        }
-
+    
+        // Smoothly update the light position towards the target
+        currentPosition += (targetPosition - currentPosition) * easingFactor;
+    
+        // Update the directional light position with the lag effect
+        directionalLight.position.x = currentPosition;
+    
         // Render the scene
         renderer.render(scene, camera);
-    }
+      }
+    
+      animate();
+    </script>
+  </div>
 
-    animate();
-  </script>
-
+  
 </body>
 </html>
