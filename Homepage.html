@@ -14,7 +14,7 @@
 <body class="home-page">
 
   <header class="main-header">
-    <h1><a href="Homepage.html">CC</a></h1>
+    <h1><a href="Homepage.html">ColorCove</a></h1>
     <nav>
       <a href="About.html">About Page</a>
       <a href="Submit.html">Submit</a>
@@ -66,27 +66,23 @@
         console.error('Error loading GLB file:', error);
       });
     
-      let targetPosition = -5; // Initial target position
-      let currentPosition = -5; // Current position of the light
-      const easingFactor = 0.05; // Controls the "lag" effect (higher = slower, lower = faster)
+      // Variables to store mouse position
+      let mouseX = 0;
+      let mouseY = 0;
     
-      // Scroll event listener
-      window.addEventListener('scroll', function () {
-        const scrollPosition = window.scrollY; // Get the scroll position
-        const maxScroll = document.documentElement.scrollHeight - window.innerHeight; // Maximum scroll value
-    
-        // Calculate the target position based on the scroll position
-        targetPosition = (-5 + (scrollPosition / maxScroll) * 10); // Adjust the 10 for the range of movement
+      // Mouse move event listener
+      window.addEventListener('mousemove', function(event) {
+        // Normalize mouse coordinates
+        mouseX = (event.clientX / window.innerWidth) * 2 - 1; // Map to range [-1, 1]
+        mouseY = -(event.clientY / window.innerHeight) * 2 + 1; // Map to range [-1, 1]
       });
     
       function animate() {
         requestAnimationFrame(animate);
     
-        // Smoothly update the light position towards the target
-        currentPosition += (targetPosition - currentPosition) * easingFactor;
-    
-        // Update the directional light position with the lag effect
-        directionalLight.position.x = currentPosition;
+        // Adjust the directional light position based on the mouse position
+        directionalLight.position.x = mouseX * 10; // Scale the light position based on mouseX
+        directionalLight.position.y = mouseY * 10; // Scale the light position based on mouseY
     
         // Render the scene
         renderer.render(scene, camera);
