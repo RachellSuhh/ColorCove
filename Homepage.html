@@ -44,7 +44,7 @@
       renderer.setSize(window.innerWidth, window.innerHeight);  // Adjust to fit your container
       document.body.appendChild(renderer.domElement);
     
-      const ambientLight = new THREE.AmbientLight(0xffffff, 0.95);
+      const ambientLight = new THREE.AmbientLight(0xffffff, 0.5);
       scene.add(ambientLight);
     
       const directionalLight = new THREE.DirectionalLight(0xffffff, 1);
