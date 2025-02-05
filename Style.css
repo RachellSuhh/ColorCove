@@ -13,7 +13,7 @@ body {
   line-height: 1.6;
   color: white;
   background-color: black;
-  min-height: 100vh; 
+  min-height: 800px; 
   padding-top: 200px;
   overflow-x: hidden;
 }
@@ -284,4 +284,28 @@ h3 {
     .submit-form {
         width: 80%;
     }
+}
+
+
+.About{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 600px;
+  width: 900px;
+  background-color: #801313; 
+  color: white; 
+  padding: 50px; 
+  gap: 80px;
+  box-sizing: border-box; 
+  border-radius: 20px;
+  margin-top: 90px;
+}
+
+p{
+  font-size: 20px;
+  line-height: 1.6;
+  text-align: justify;
+  text-justify: inter-word;
+  font-family: "Arima", serif;
 }
