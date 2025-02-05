@@ -142,3 +142,69 @@ h3 {
   color: white;
   white-space: nowrap;
 }
+
+/* Submit Form */
+.submit-form {
+  width: 50%;
+  margin: 20px auto;
+  padding: 20px;
+  background-color: #f8f3f0; 
+  border-radius: 12px;
+  box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.submit-form label {
+  font-family: "Arima", serif;
+  font-size: 18px;
+  font-weight: 500;
+  color: #7a3e3e; 
+  display: block;
+  margin-bottom: 5px;
+}
+
+
+.submit-form input[type="text"] {
+  width: 100%;
+  padding: 10px;
+  margin: 10px;
+  border: 2px solid #d4a5a5; 
+  border-radius: 8px;
+  font-size: 16px;
+  background-color: #fff;
+  transition: all 0.3s ease;
+}
+
+
+.submit-form input[type="text"]:focus {
+  border-color: #a05252; 
+  outline: none;
+  box-shadow: 0 0 5px rgba(160, 82, 82, 0.5);
+}
+
+
+.submit-form input[type="submit"] {
+  display: block;
+  width: 100%;
+  padding: 12px;
+  margin-top: 10px;
+  font-size: 18px;
+  font-weight: bold;
+  color: #fff;
+  background-color: #CE8282; 
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  margin: 10px;
+}
+
+
+.submit-form input[type="submit"]:hover {
+  background-color: #AE5A5A;
+}
+
+@media (max-width: 768px) {
+  .submit-form {
+      width: 80%;
+  }
+}
