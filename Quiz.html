@@ -23,8 +23,8 @@
             display: block;
         }
         .options img {
-            width: 100px;
-            height: 100px;
+            width: 150px;
+            height: 150px;
             margin: 10px;
             cursor: pointer;
             border-radius: 10px;
@@ -40,16 +40,38 @@
             font-weight: bold;
         }
         .result {
-            margin-top: 20px;
-            font-weight: bold;
-            font-size: 18px;
-            color: #d63384;
+            margin-bottom: 20px; /* Space between result text and image */
+            font-family: "Abril Fatface", serif;
+            font-size: 30px;
+            color:#AE5A5A;
+            text-decoration: underline;
         }
-        .result img {
-            width: 120px;
-            border-radius: 10px;
+
+        #resultImage {
+            width: 400px !important;
+            height: auto;
+            max-width: 100%; 
+            display: block;
+            margin: 20px;
+            border-radius: 10px; 
+        }
+        #resultDescription {
+            font-size: 10px;
+            color: white;
             margin-top: 10px;
         }
+        footer {
+            background-color: #430707;
+            color: white;
+            text-align: center;
+            padding: 20px;
+            width: 100%;
+            font-size: 14px;
+            margin-top: 700px; 
+            z-index: 3;
+}
+
+
     </style>
       </style>
     </head>
@@ -64,9 +86,9 @@
       </header>
 
 <body>
-    <h1>Welcome to the Quiz</h1>
-    <p>This is a simple quiz page.</p>
-    <h2>Find Your Perfect Lipstick Shade 💄</h2>
+    <div class="quiz-container">
+        <h2>Find Your Perfect Lipstick Shade 💄</h2>
+    </div>
 
     <!-- Question 1 -->
     <div class="question active" id="q1">
@@ -88,98 +110,133 @@
   </div>
 
     <!-- Question 2 -->
-    <div class="question" id="q2">
-      <p>What is your color tone?</p>
-      <div class="options">
-          <div class="option" onclick="nextQuestion('warm', 'q2', 'q3')">
-              <img src="Img/Warm.jpg" alt="Warm">
-              <span>Warm</span>
-          </div>
-          <div class="option" onclick="nextQuestion('cool', 'q2', 'q3')">
-              <img src="Img/Cool.jpg" alt="Cool">
-              <span>Cool</span>
-          </div>
-          <div class="option" onclick="nextQuestion('neutral', 'q2', 'q3')">
-              <img src="Img/Neutral.jpg" alt="Neutral">
-              <span>Neutral</span>
-          </div>
-      </div>
-  </div>
+<div class="question" id="q2">
+    <p>What is your color tone?</p>
+    <div class="options">
+        <div class="option" onclick="nextQuestion('warm', 'q2', null, 'Matte')">
+            <img src="Img/Warm.jpg" alt="Warm">
+            <span>Warm</span>
+        </div>
+        <div class="option" onclick="nextQuestion('cool', 'q2', null, 'Glossy')">
+            <img src="Img/Cool.jpg" alt="Cool">
+            <span>Cool</span>
+        </div>
+        <div class="option" onclick="nextQuestion('neutral', 'q2', null, 'Satin')">
+            <img src="Img/Neutral.jpg" alt="Neutral">
+            <span>Neutral</span>
+        </div>
+    </div>
+</div>
 
-    <!-- Question 3 -->
-    <div class="question" id="q3">
-      <p>What lipstick finish do you prefer?</p>
-      <div class="options">
-          <div class="option" onclick="showResult('matte')">
-              <img src="Img/Matte.jpg" alt="Matte">
-              <span>Matte</span>
-          </div>
-          <div class="option" onclick="showResult('glossy')">
-              <img src="Img/Glossy.jpg" alt="Glossy">
-              <span>Glossy</span>
-          </div>
-          <div class="option" onclick="showResult('satin')">
-              <img src="Img/Satin.jpg" alt="Satin">
-              <span>Satin</span>
-          </div>
-      </div>
-  </div>
+
 
     <!-- Result Section -->
     <div class="question" id="resultSection">
         <p class="result" id="resultText"></p>
-        <img id="resultImage" src="" alt="Lipstick Shade">
+        <div id="resultImagesContainer"></div> <!-- Holds images & descriptions -->
     </div>
+
 
     <script>
         let userChoices = {};
-
-        function nextQuestion(choice, currentQ, nextQ) {
+    
+        // Modified nextQuestion function that jumps to the result after the second question
+        function nextQuestion(choice, currentQ, nextQ, finish) {
             userChoices[currentQ] = choice;
             document.getElementById(currentQ).classList.remove("active");
-            document.getElementById(nextQ).classList.add("active");
+    
+            // If nextQ is null, call showResult instead of going to the next question
+            if (nextQ) {
+                document.getElementById(nextQ).classList.add("active");
+            } else {
+                showResult(finish);  // Directly go to results after second question
+            }
         }
-
+    
         function showResult(finish) {
             userChoices["finish"] = finish;
-            document.getElementById("q3").classList.remove("active");
-            document.getElementById("resultSection").classList.add("active");
-
+            document.getElementById("q2").classList.remove("active"); // Hide second question
+            document.getElementById("resultSection").classList.add("active"); // Show result section
+    
             let { q1: skinTone, q2: colorTone } = userChoices;
             let recommendation = "";
-            let imageSrc = "";
-
+            let images = [];
+    
+            // Your recommendation logic based on skin tone and color tone
             if (skinTone === "fair" && colorTone === "cool") {
                 recommendation = "Soft Rose or Mauve";
-                imageSrc = "soft-rose.jpg";
+                images = [
+                    { src: "lip-img/CT-Liner.jpg", link: "https://www.sephora.com/product/lip-cheat-lip-liner-P433516", desc: "Matte: Charlotte Tilbury Lip Cheat Lip Liner in Pillow Talk" },
+                    { src: "lip-img/Dior-lipstick.jpg", link: "https://www.sephora.com/product/dior-dior-addict-refillable-shine-lipstick-P481969?country_switch=us&lang=en&skuId=2509321&om_mmc=ppc-GG_17791296877___2509321__9002239_c&country_switch=us&lang=en&gad_source=1&gclid=Cj0KCQiAkoe9BhDYARIsAH85cDPMIbHIqaygDDpMiBIbzGIBuXc4ohuesl0wktcBnBFET86ZLjDoTK4aAqJJEALw_wcB&gclsrc=aw.ds", desc: "Glossy: Dior Addict Lipstick in Rose Des Vents" },
+                    {src: "lip-img/Loreal-lipstick.jpg", link: "https://www.ulta.com/p/colour-riche-original-satin-lipstick-2681?sku=2047548", desc: "Satin: L'Oreal Paris Color Riche Lipstick in Fairest Nude"}
+                ];
             } else if (skinTone === "fair" && colorTone === "warm") {
                 recommendation = "Peachy Nude or Coral";
-                imageSrc = "peachy-nude.jpg";
+                images = [
+                    { src: "lip-img/Rare-liner.jpg", link: "https://www.sephora.com/product/kind-words-lip-liner-P500636?skuId=2589497", desc: "Matte: Rare Beauty Kind Words Lip Liner in Creative" },
+                    { src: "lip-img/Dior-Coral.jpg", link: "https://www.dior.com/en_us/beauty/products/dior-addict-lip-maximizer-C031900004.html?gad_source=1&gclid=Cj0KCQiAkoe9BhDYARIsAH85cDNY71NJQH7QrY1vcMphXSKaUQqPPtAfnBcnJQ3u20yIrx9ctcIDB0saAqimEALw_wcB&gclsrc=aw.ds", desc: "Glossy: Dior Addict Lip Maximizer in Coral" },
+                    { src: "lip-img/Mario-coral.jpg", link: "https://www.sephora.com/product/makeup-by-mario-supersatin-lipstick-P509305?country_switch=us&lang=en&skuId=2731594&om_mmc=ppc-GG_17789371101___2731594__9002239_c&country_switch=us&lang=en&gad_source=1&gclid=Cj0KCQiAkoe9BhDYARIsAH85cDPn6QJTkImDoMUamSuaIeKlns5MoXq9SQZ_SjmbQgUDyLbNBoOvX78aAsAlEALw_wcB&gclsrc=aw.dsttps://www.ulta.com/p/color-sensational-lipstick-xlsImpprod12491007?sku=2262033", desc: "Satin: Makeup By Mario SuperSatin Lipstick in Soho" }
+                ];
             } else if (skinTone === "medium" && colorTone === "cool") {
                 recommendation = "Berry or Plum";
-                imageSrc = "berry.jpg";
+                images = [
+                    { src: "Img/Berry.jpg", link: "https://www.maccosmetics.com", desc: "MAC Satin Lipstick in Rebel" },
+                    { src: "Img/Plum.jpg", link: "https://www.narscosmetics.com", desc: "NARS Audacious Lipstick in Liv" }
+                ];
             } else if (skinTone === "medium" && colorTone === "warm") {
                 recommendation = "Terracotta or Copper";
-                imageSrc = "terracotta.jpg";
+                images = [
+                    { src: "Img/Terracotta.jpg", link: "https://hudabeauty.com", desc: "Huda Beauty Power Bullet Matte Lipstick in Board Meeting" }
+                ];
             } else if (skinTone === "deep" && colorTone === "cool") {
                 recommendation = "Deep Wine or Burgundy";
-                imageSrc = "deep-wine.jpg";
+                images = [
+                    { src: "Img/Deep-Wine.jpg", link: "https://www.patmcgrath.com", desc: "Pat McGrath MatteTrance Lipstick in McMenamy" }
+                ];
             } else if (skinTone === "deep" && colorTone === "warm") {
                 recommendation = "Rich Red or Bronze";
-                imageSrc = "rich-red.jpg";
+                images = [
+                    { src: "Img/Rich-Red.jpg", link: "https://www.dior.com", desc: "Dior Rouge Dior in 999 Matte" }
+                ];
             } else {
                 recommendation = "Universal Nude or Classic Red";
-                imageSrc = "universal-nude.jpg";
+                images = [
+                    { src: "Img/Universal-Nude.jpg", link: "https://www.narscosmetics.com", desc: "NARS Velvet Matte Lip Pencil in Cruella" }
+                ];
             }
-
-            document.getElementById("resultText").innerHTML = `💄 Recommended Shade: <strong>${recommendation}</strong> with a <strong>${finish}</strong> finish!`;
-            document.getElementById("resultImage").src = imageSrc;
+    
+            document.getElementById("resultText").innerHTML = `💄 Recommended Shades: <strong>${recommendation}</strong> with a <strong>${finish}</strong> finish!`;
+    
+            let imagesContainer = document.getElementById("resultImagesContainer");
+    
+            // Clear previous content
+            imagesContainer.innerHTML = "";
+    
+            // Loop through images and descriptions
+            images.forEach(item => {
+                let itemContainer = document.createElement("div");
+                itemContainer.classList.add("resultItem");
+    
+                let imgElement = document.createElement("a");
+                imgElement.href = item.link;
+                imgElement.target = "_blank"; // Open in a new tab
+                imgElement.innerHTML = `<img src="${item.src}" alt="Lipstick Shade">`;
+    
+                let descElement = document.createElement("p");
+                descElement.innerHTML = `<strong>${item.desc}</strong>`;
+    
+                itemContainer.appendChild(imgElement);
+                itemContainer.appendChild(descElement);
+    
+                imagesContainer.appendChild(itemContainer);
+            });
         }
     </script>
     
-      <footer>
+    
+    <footer>
         <p>&copy; 2025 ColorCove. All rights reserved.</p>
-      </footer>
+    </footer>
       
 </body>
 </html>

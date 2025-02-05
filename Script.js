@@ -96,3 +96,4 @@ loader.load('Lipstick-2.glb', function (gltf) {
 }, undefined, function (error) {
     console.error('Error loading GLB file:', error);
 });
+
