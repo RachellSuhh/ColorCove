@@ -73,17 +73,15 @@ nav a:hover {
 
 .container {
   display: flex;
-  justify-content: space-between; 
-  align-items: baseline; 
+  justify-content: center; 
+  align-items: center; 
   gap: 10px; 
   width: 100%;
-  max-width: auto;
-  max-height: fit-content;
   margin: 0;
   padding: 80px;
-  margin-top: 200px;
-  position: relative; 
-  z-index: 2; 
+  position: relative;  
+  top: 500px;  
+  z-index: 2;
 }
 
 .text-content {
@@ -134,11 +132,13 @@ footer {
 h2 {
   font-family: "Abril Fatface", serif;
   color: white;
-  font-size: 80px;
+  font-size: 50px;
+  white-space: nowrap;
 }
 
 h3 {
   font-family: "Abril Fatface", serif;
-  font-size: 30px;
+  font-size: 20px;
   color: white;
+  white-space: nowrap;
 }
