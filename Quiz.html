@@ -40,7 +40,7 @@
             font-weight: bold;
         }
         .result {
-            margin-bottom: 20px; /* Space between result text and image */
+            margin-bottom: 20px; 
             font-family: "Abril Fatface", serif;
             font-size: 30px;
             color:#AE5A5A;
@@ -133,36 +133,36 @@
     <!-- Result Section -->
     <div class="question" id="resultSection">
         <p class="result" id="resultText"></p>
-        <div id="resultImagesContainer"></div> <!-- Holds images & descriptions -->
+        <div id="resultImagesContainer"></div> 
     </div>
 
 
     <script>
         let userChoices = {};
     
-        // Modified nextQuestion function that jumps to the result after the second question
+        
         function nextQuestion(choice, currentQ, nextQ, finish) {
             userChoices[currentQ] = choice;
             document.getElementById(currentQ).classList.remove("active");
     
-            // If nextQ is null, call showResult instead of going to the next question
+           
             if (nextQ) {
                 document.getElementById(nextQ).classList.add("active");
             } else {
-                showResult(finish);  // Directly go to results after second question
+                showResult(finish);  
             }
         }
     
         function showResult(finish) {
             userChoices["finish"] = finish;
-            document.getElementById("q2").classList.remove("active"); // Hide second question
-            document.getElementById("resultSection").classList.add("active"); // Show result section
+            document.getElementById("q2").classList.remove("active"); 
+            document.getElementById("resultSection").classList.add("active"); 
     
             let { q1: skinTone, q2: colorTone } = userChoices;
             let recommendation = "";
             let images = [];
     
-            // Your recommendation logic based on skin tone and color tone
+           
             if (skinTone === "fair" && colorTone === "cool") {
                 recommendation = "Soft Rose or Mauve";
                 images = [
@@ -218,17 +218,17 @@
     
             let imagesContainer = document.getElementById("resultImagesContainer");
     
-            // Clear previous content
+            
             imagesContainer.innerHTML = "";
     
-            // Loop through images and descriptions
+            
             images.forEach(item => {
                 let itemContainer = document.createElement("div");
                 itemContainer.classList.add("resultItem");
     
                 let imgElement = document.createElement("a");
                 imgElement.href = item.link;
-                imgElement.target = "_blank"; // Open in a new tab
+                imgElement.target = "_blank"; 
                 imgElement.innerHTML = `<img src="${item.src}" alt="Lipstick Shade">`;
     
                 let descElement = document.createElement("p");
